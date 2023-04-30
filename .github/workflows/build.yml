@@ -97,11 +97,15 @@ jobs:
           flutter config --enable-linux-desktop
           flutter build linux --release
 
-      - name: Upload Linux executable as artifact
+      - name: Zip Linux executable and resources
+        run: |
+          zip -r linux_grademanager.zip build/linux/x64/release/bundle
+
+      - name: Upload Linux zip
         uses: actions/upload-artifact@v3
         with:
           name: linux_grademanager
-          path: build/linux/x64/release/bundle
+          path: linux_grademanager.zip
 
   deploy_executables:
     needs: [build_apk, build_windows_exe, build_linux_exe]
@@ -132,9 +136,9 @@ jobs:
       - name: Deploy executables to website repository
         run: |
           ls
-          cp android_grademanager.apk/android_grademanager.apk website/software/grademanager.apk
-          cp windows_grademanager.exe/windows_grademanager.exe website/software/GradeManagerSetup.exe
-          cp -r linux_grademanager website/software/grademanager
+          cp app-release.apk/android_grademanager.apk website/software/grademanager.apk
+          cp GradeManagerSetup.exe website/software/GradeManagerSetup.exe
+          cp linux_grademanager.zip website/software/grademanager.zip
 
           git config
           git config --global user.name "GradeManager-Bot"
