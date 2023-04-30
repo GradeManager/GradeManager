@@ -131,6 +131,7 @@ jobs:
 
       - name: Deploy executables to website repository
         run: |
+          ls
           cp android_grademanager.apk/android_grademanager.apk website/software/grademanager.apk
           cp windows_grademanager.exe/windows_grademanager.exe website/software/GradeManagerSetup.exe
           cp -r linux_grademanager website/software/grademanager
