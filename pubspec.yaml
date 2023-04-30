@@ -1,0 +1,52 @@
+name: GradeManager
+description: GradeManager by Megakuul
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+  path_provider: ^2.0.12
+  gauges: ^1.0.0
+  flutter_launcher_icons: ^0.13.1
+  file_picker: ^5.2.10
+  xml: ^6.2.2
+  url_launcher: ^6.1.10
+  flutter_colorpicker: ^1.0.3
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "icons/favicon.png"
+  min_sdk_android: 21
+  windows:
+    generate: true
+    image_path: "icons/favicon.png"
+    icon_size: 256
+  macos:
+    generate: true
+    image_path: "icons/favicon.png"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
