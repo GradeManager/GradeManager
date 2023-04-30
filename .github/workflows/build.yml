@@ -139,11 +139,9 @@ jobs:
           cp app-release.apk website/software/grademanager.apk
           cp GradeManagerSetup.exe website/software/GradeManagerSetup.exe
           cp linux_grademanager.zip website/software/grademanager.zip
-
-          git config
-          git config --global user.name "GradeManager-Bot"
+          
           git config --global user.email "grademanager@gmx.ch"
           cd website
-          git add software/grademanager.apk software/GradeManagerSetup.exe software/grademanager
+          git add software/grademanager.apk software/GradeManagerSetup.exe software/grademanager.zip
           git commit -m "Update app executables"
           git push
