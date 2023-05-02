@@ -107,6 +107,33 @@ jobs:
           name: linux_grademanager
           path: linux_grademanager.zip
 
+  build_macos_exe:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout app repository
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.0.0'
+          channel: 'stable'
+
+      - name: Build Macos executable
+        run: |
+          flutter upgrade
+          flutter build macos --release
+
+      - name: Zip Macos executable and resources
+        run: |
+          zip -r macos_grademanager.zip build/macos/Build/Products/Release/grademanagerv2.app
+
+      - name: Upload Linux zip
+        uses: actions/upload-artifact@v3
+        with:
+          name: macos_grademanager
+          path: macos_grademanager.zip
+
   deploy_executables:
     needs: [build_apk, build_windows_exe, build_linux_exe]
     runs-on: ubuntu-latest
@@ -126,6 +153,11 @@ jobs:
         with:
           name: linux_grademanager
 
+      - name: Download Macos artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: macos_grademanager
+
       - name: Checkout website repository
         uses: actions/checkout@v3
         with:
@@ -138,7 +170,8 @@ jobs:
           ls
           cp app-release.apk website/software/grademanager.apk
           cp GradeManagerSetup.exe website/software/GradeManagerSetup.exe
-          cp linux_grademanager.zip website/software/grademanager.zip
+          cp linux_grademanager.zip website/software/linux_grademanager.zip
+          cp macos_grademanager.zip website/software/macos_grademanager.zip
           
           git config --global user.name "GradeManager-Bot"
           git config --global user.email "grademanager@gmx.ch"
