@@ -176,6 +176,6 @@ jobs:
           git config --global user.name "GradeManager-Bot"
           git config --global user.email "grademanager@gmx.ch"
           cd website
-          git add software/grademanager.apk software/GradeManagerSetup.exe software/grademanager.zip
+          git add software/grademanager.apk software/GradeManagerSetup.exe software/linux_grademanager.zip software/macos_grademanager.zip
           git commit -m "Update app executables"
           git push
