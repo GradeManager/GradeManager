@@ -135,7 +135,7 @@ jobs:
           path: macos_grademanager.zip
 
   deploy_executables:
-    needs: [build_apk, build_windows_exe, build_linux_exe]
+    needs: [build_apk, build_windows_exe, build_linux_exe, build_macos_exe]
     runs-on: ubuntu-latest
     steps:
       - name: Download APK artifacts
