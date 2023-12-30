@@ -39,3 +39,9 @@ KEY_ALIAS          = <keyalias for Android Signing key> #default -> upload
 KEYSTORE_BASE64    = <Android Signing key (.jks) in Base64 format>
 BOT_ACCESS_TOKEN   = <Github Access token from the BOT>
 ```
+
+**Apple Builds**
+
+I decided to remove macOS and iOS support. The fact that I spent some hours figuring out why CocoaPods didn't compile on a freshly installed Action Runner without getting any useful errors made me question if my time was well spent creating an automated build for a proprietary, closed-source operating system.
+
+If you are a proud Apple user and believe that this OS is flawless, compile the project yourself. Good luck...
