@@ -107,35 +107,8 @@ jobs:
           name: linux_grademanager
           path: linux_grademanager.zip
 
-  build_macos_exe:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout app repository
-        uses: actions/checkout@v3
-
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.0.0'
-          channel: 'stable'
-
-      - name: Build Macos executable
-        run: |
-          flutter upgrade
-          flutter build macos --release
-
-      - name: Zip Macos executable and resources
-        run: |
-          zip -r macos_grademanager.zip build/macos/Build/Products/Release/grademanagerv2.app
-
-      - name: Upload Linux zip
-        uses: actions/upload-artifact@v3
-        with:
-          name: macos_grademanager
-          path: macos_grademanager.zip
-
   deploy_executables:
-    needs: [build_apk, build_windows_exe, build_linux_exe, build_macos_exe]
+    needs: [build_apk, build_windows_exe, build_linux_exe]
     runs-on: ubuntu-latest
     steps:
       - name: Download APK artifacts
@@ -152,11 +125,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: linux_grademanager
-
-      - name: Download Macos artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: macos_grademanager
 
       - name: Checkout website repository
         uses: actions/checkout@v3
@@ -182,11 +150,9 @@ jobs:
           mv app-release.apk GradeManagerAndroid.apk
           mv GradeManagerSetup.exe GradeManagerWindows.exe
           mv linux_grademanager.zip GradeManagerLinux.zip
-          mv macos_grademanager.zip GradeManagerMacOS.zip
           
           # Upload artifacts
           cd website
           gh release upload latest ../GradeManagerAndroid.apk
           gh release upload latest ../GradeManagerWindows.exe
           gh release upload latest ../GradeManagerLinux.zip
-          gh release upload latest ../GradeManagerMacOS.zip
