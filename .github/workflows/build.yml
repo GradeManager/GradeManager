@@ -165,17 +165,28 @@ jobs:
           token: ${{ secrets.BOT_ACCESS_TOKEN }}
           path: website
 
-      - name: Deploy executables to website repository
+      - name: Create release package
+        env:
+          GITHUB_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
         run: |
-          ls
-          cp app-release.apk website/software/grademanager.apk
-          cp GradeManagerSetup.exe website/software/GradeManagerSetup.exe
-          cp linux_grademanager.zip website/software/linux_grademanager.zip
-          cp macos_grademanager.zip website/software/macos_grademanager.zip
-          
-          git config --global user.name "GradeManager-Bot"
-          git config --global user.email "grademanager@gmx.ch"
           cd website
-          git add software/grademanager.apk software/GradeManagerSetup.exe software/linux_grademanager.zip software/macos_grademanager.zip
-          git commit -m "Update app executables"
-          git push
+          gh release create latest --title "GradeManager Release Package"
+
+      - name: Upload release artifacts
+        env:
+          GITHUB_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
+        run: |
+          # Rename artifacts appropriately
+          mv app-release.apk GradeManagerAndroid.apk
+          mv GradeManagerSetup.exe GradeManagerWindows.exe
+          mv linux_grademanager.zip GradeManagerLinux.zip
+          mv macos_grademanager.zip GradeManagerMacOS.zip
+          
+          # Upload artifacts
+          cd website
+          gh release upload latest ../GradeManagerAndroid.apk
+          gh release upload latest ../GradeManagerWindows.exe
+          gh release upload latest ../GradeManagerLinux.zip
+          gh release upload latest ../GradeManagerMacOS.zip
