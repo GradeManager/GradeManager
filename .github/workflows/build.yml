@@ -133,6 +133,16 @@ jobs:
           token: ${{ secrets.BOT_ACCESS_TOKEN }}
           path: website
 
+      - name: Delete previous release package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd website
+          if gh release view latest; then
+            gh release delete latest
+          fi
+          
       - name: Create release package
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
