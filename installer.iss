@@ -6,7 +6,7 @@
 #define MyAppAssocName MyAppName + " Config"
 #define MyAppAssocExt ".gm"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
-#define SourcePath "build\windows\runner\Release"
+#define SourcePath "build\windows\x64\runner\Release"
 #define OutputDir "
 
 [Setup]
