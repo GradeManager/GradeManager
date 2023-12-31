@@ -126,19 +126,14 @@ jobs:
         with:
           name: linux_grademanager
 
-      - name: Checkout website repository
+      - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          repository: GradeManager/Website
-          token: ${{ secrets.BOT_ACCESS_TOKEN }}
-          path: website
 
       - name: Delete previous release package
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd website
           if gh release view latest; then
             gh release delete latest
           fi
@@ -148,7 +143,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd website
           gh release create latest --title "GradeManager Release Package"
 
       - name: Upload release artifacts
@@ -162,7 +156,6 @@ jobs:
           mv linux_grademanager.zip GradeManagerLinux.zip
           
           # Upload artifacts
-          cd website
           gh release upload latest ../GradeManagerAndroid.apk
           gh release upload latest ../GradeManagerWindows.exe
           gh release upload latest ../GradeManagerLinux.zip
