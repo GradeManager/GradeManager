@@ -153,11 +153,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Rename artifacts appropriately
-          mv android_grademanager.apk GradeManagerAndroid.apk
-          mv GradeManagerSetup.exe GradeManagerWindows.exe
-          mv linux_grademanager.zip GradeManagerLinux.zip
+          mv ../app-release.apk GradeManagerAndroid.apk
+          mv ../GradeManagerSetup.exe GradeManagerWindows.exe
+          mv ../linux_grademanager.zip GradeManagerLinux.zip
           
           # Upload artifacts
-          gh release upload latest ../GradeManagerAndroid.apk
-          gh release upload latest ../GradeManagerWindows.exe
-          gh release upload latest ../GradeManagerLinux.zip
+          gh release upload latest ./GradeManagerAndroid.apk
+          gh release upload latest ./GradeManagerWindows.exe
+          gh release upload latest ./GradeManagerLinux.zip
