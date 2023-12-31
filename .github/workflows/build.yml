@@ -145,16 +145,16 @@ jobs:
           
       - name: Create release package
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
-          GH_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd website
           gh release create latest --title "GradeManager Release Package"
 
       - name: Upload release artifacts
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
-          GH_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Rename artifacts appropriately
           mv app-release.apk GradeManagerAndroid.apk
