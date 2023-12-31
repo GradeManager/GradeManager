@@ -130,12 +130,15 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          path: grademanager
 
       - name: Delete previous release package
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cd grademanager
           if gh release view latest; then
             gh release delete latest
           fi
@@ -145,6 +148,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cd grademanager
           gh release create latest --title "GradeManager Release Package"
 
       - name: Upload release artifacts
@@ -152,12 +156,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cd grademanager
           # Rename artifacts appropriately
-          mv ../app-release.apk GradeManagerAndroid.apk
-          mv ../GradeManagerSetup.exe GradeManagerWindows.exe
-          mv ../linux_grademanager.zip GradeManagerLinux.zip
+          mv app-release.apk GradeManagerAndroid.apk
+          mv GradeManagerSetup.exe GradeManagerWindows.exe
+          mv linux_grademanager.zip GradeManagerLinux.zip
           
           # Upload artifacts
-          gh release upload latest ./GradeManagerAndroid.apk
-          gh release upload latest ./GradeManagerWindows.exe
-          gh release upload latest ./GradeManagerLinux.zip
+          grademanager
+          gh release upload latest ../GradeManagerAndroid.apk
+          gh release upload latest ../GradeManagerWindows.exe
+          gh release upload latest ../GradeManagerLinux.zip
