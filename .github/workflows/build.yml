@@ -110,6 +110,8 @@ jobs:
   deploy_executables:
     needs: [build_apk, build_windows_exe, build_linux_exe]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Download APK artifacts
         uses: actions/download-artifact@v3
