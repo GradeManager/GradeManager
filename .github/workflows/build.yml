@@ -99,8 +99,8 @@ jobs:
 
       - name: Zip Linux executable and resources
         run: |
-          cd build/linux/x64/release/bundle
-          zip -r linux_grademanager.zip .
+          cd build/linux/x64/release
+          zip -r ../../../../linux_grademanager.zip bundle
 
       - name: Upload Linux zip
         uses: actions/upload-artifact@v3
@@ -157,7 +157,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ls -al
           # Rename artifacts appropriately
           mv app-release.apk GradeManagerAndroid.apk
           mv GradeManagerSetup.exe GradeManagerWindows.exe
