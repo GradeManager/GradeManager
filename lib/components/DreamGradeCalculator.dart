@@ -38,7 +38,7 @@ class _DreamGradeCalculatorState extends State<DreamGradeCalculator> {
       icon: const Icon(Icons.school),
       title: const Text("Dream Grade"),
       content: SizedBox(
-        height: 235,
+        height: 245,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -47,7 +47,7 @@ class _DreamGradeCalculatorState extends State<DreamGradeCalculator> {
                 icon: Icons.grade_outlined,
                 hintText: "Dream Grade",
                 textAlign: TextAlign.left,
-                maxChars: 3,
+                maxChars: 5,
                 textInputType: TextInputType.number,
                 onChanged: (input) {
                   widget.grade = getDreamGrade(widget.dreamGradeController, widget.dreamPercentageController);

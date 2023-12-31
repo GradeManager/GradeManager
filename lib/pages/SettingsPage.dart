@@ -104,9 +104,9 @@ class _settingsState extends State<settings> {
         context: context,
         builder: (context) => AlertDialog(
           title: const Text("Import Config"),
-          content: Column(
+          content: const Column(
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               Text("This is a non destructive action!",
                 style: TextStyle(color: Colors.orange),
                 textAlign: TextAlign.center),
@@ -202,7 +202,16 @@ class _settingsState extends State<settings> {
       return Padding(
         padding: const EdgeInsets.only(top: 7, bottom: 7),
         child: ElevatedButton.icon(
-          style: const ButtonStyle(fixedSize: MaterialStatePropertyAll(Size(290, 40)), alignment: Alignment.centerLeft),
+          style: ButtonStyle(
+            fixedSize: const MaterialStatePropertyAll(Size(320, 40)),
+            alignment: Alignment.centerLeft,
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    side: const BorderSide(color:Colors.deepPurple)
+                )
+            ),
+          ),
           onPressed: () {
             onPressed();
           },

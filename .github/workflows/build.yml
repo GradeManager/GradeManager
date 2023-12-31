@@ -99,7 +99,8 @@ jobs:
 
       - name: Zip Linux executable and resources
         run: |
-          zip -r linux_grademanager.zip build/linux/x64/release/bundle
+          cd build/linux/x64/release/bundle
+          zip -r linux_grademanager.zip .
 
       - name: Upload Linux zip
         uses: actions/upload-artifact@v3

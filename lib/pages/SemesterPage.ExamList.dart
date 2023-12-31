@@ -128,7 +128,7 @@ class _ExamListState extends State<ExamList> {
                   context: context,
                   builder: (context) => gmAlert(
                     title: "Edit ${widget.itemName}",
-                    height: 165,
+                    height: 175,
                     onSubmit: () {
                       final snackbar = editItem(widget.itemParent, widget.itemName, _subjectController.text,
                           widget.itemParent[widget.itemName]?["percentage"].toString() ==
@@ -194,7 +194,7 @@ class _ExamListState extends State<ExamList> {
               context: context,
               builder: (context) => gmAlert(
                   title: "Add Exam",
-                  height: 330,
+                  height: 350,
                   onSubmit: () {
                     final tmpGrade = double.tryParse(_gradeController.text);
                     final tmpPercentage = double.tryParse(_percentageController.text);

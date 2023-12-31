@@ -88,7 +88,7 @@ class _SubjectListState extends State<SubjectList> {
                   context: context,
                   builder: (context) => gmAlert(
                       title: "Edit ${widget.itemName}",
-                      height: 80,
+                      height: 95,
                       onSubmit: () {
                         final snackBar = editItem(Config!["semesters"], widget.itemName, _semesterController.text, null);
                         if (snackBar != null) {

@@ -62,7 +62,7 @@ class ExamPage extends StatelessWidget {
                     context: context,
                     builder: (context) => gmAlert(
                         title: "Edit $exam",
-                        height: 240,
+                        height: 265,
                         onSubmit: () {
                           try {
                             itemInformation[exam]["grade"] = double.parse(_gradeController.text);

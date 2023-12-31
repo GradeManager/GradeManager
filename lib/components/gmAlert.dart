@@ -24,29 +24,35 @@ class gmAlert extends StatelessWidget {
           )
       ),
       actionsAlignment: MainAxisAlignment.center,
+      actionsOverflowAlignment: OverflowBarAlignment.center,
       actions: [
-        Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: ElevatedButton.icon(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 20, 30, 48)),
-              ),
-              onPressed: onCancel,
-              label: const Text("Cancel"),
-              icon: const Icon(Icons.cancel),
-            )
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: ElevatedButton.icon(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 20, 30, 48)),
+        ElevatedButton.icon(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+                side: const BorderSide(color:Colors.deepPurple)
+              )
             ),
-            onPressed: onSubmit,
-            label: const Text("Submit"),
-            icon: const Icon(Icons.send),
           ),
-        )
+          onPressed: onCancel,
+          label: const Text("Cancel"),
+          icon: const Icon(Icons.cancel),
+        ),
+        const SizedBox(height: 10),
+        ElevatedButton.icon(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    side: const BorderSide(color:Colors.deepPurple)
+                )
+            ),
+          ),
+          onPressed: onSubmit,
+          label: const Text("Submit"),
+          icon: const Icon(Icons.send),
+        ),
       ],
     );
   }

@@ -93,7 +93,7 @@ class _SemesterListState extends State<SemesterList> {
               context: context,
               builder: (context) => gmAlert(
                   title: "Add Semester",
-                  height: 80,
+                  height: 95,
                   onSubmit: () {
                     Navigator.pop(context);
                     final snackbar = addItem(Config!["semesters"], semesterController.text, {"subjects":{}});
